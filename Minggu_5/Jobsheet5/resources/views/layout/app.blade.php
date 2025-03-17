@@ -7,6 +7,7 @@
     @hasSection('subtitle') | @yield('subtitle') @endif 
 @stop 
  
+@vite('resources/js/app.js') 
 {{-- Extend and customize the page content header --}} 
  
 @section('content_header') 
@@ -49,16 +50,18 @@
 <script> 
  
     $(document).ready(function() { 
-        // Add your common script logic here... 
+        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
     }); 
  
 </script> 
 @endpush 
- 
+
+@stack('scripts') 
 {{-- Add common CSS customizations --}} 
  
 @push('css') 
-{{-- You can add AdminLTE customizations here --}} 
+{{-- You can add AdminLTE customizations here --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" /> 
 <style type="text/css"> 
  
     /* 
