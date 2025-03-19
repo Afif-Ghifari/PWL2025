@@ -10,7 +10,12 @@
         <div class="card">
             <div class="card-header">Manage Kategori</div>
             <div class="card-body">
-                <x-adminlte-button label="Tambah" theme="success" icon="fas fa-plus"/>
+                {{-- Tombol yang mengarahkan ke halaman tambah data kategori --}}
+                <button onclick="window.location.href = '/kategori/create'" class="btn btn-success my-3">
+                    {{-- Icon tambah (plus) --}}
+                    <i class="fas fa-plus"></i> 
+                    Tambah
+                </button>
                 {!! $dataTable->table() !!}
             </div>
         </div>

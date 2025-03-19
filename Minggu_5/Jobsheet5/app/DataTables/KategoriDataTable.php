@@ -22,8 +22,8 @@ class KategoriDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable 
     { 
         return (new EloquentDataTable($query)) 
-/*             ->addColumn('action', 'kategori.action') */ 
-            ->setRowId('id'); 
+            ->addColumn('action', 'kategori.action')
+            ->setRowId('kategori_id'); 
     } 
  
     /** 
@@ -41,9 +41,11 @@ class KategoriDataTable extends DataTable
     { 
         return $this->builder() 
                     ->setTableId('kategori-table') 
-                    ->columns($this->getColumns()) 
+                    ->columns(
+                        $this->getColumns()
+                        ) 
                     ->minifiedAjax() 
-                    //->dom('Bfrtip') 
+                    ->dom('Bfrtip') 
                     ->orderBy(1) 
                     ->selectStyleSingle() 
                     ->buttons([ 
@@ -52,7 +54,12 @@ class KategoriDataTable extends DataTable
                         Button::make('pdf'), 
                         Button::make('print'), 
                         Button::make('reset'), 
-                        Button::make('reload') 
+                        Button::make('reload'),
+                        // Button::raw([
+                        //     'text' => '+ Tambah',
+                        //     'action' => 'function () { window.location.href = "/kategori/create"; }',
+                        //     'className' => 'btn btn-success'
+                        // ])
                     ]); 
     } 
  
@@ -62,19 +69,19 @@ class KategoriDataTable extends DataTable
     public function getColumns(): array 
     { 
         return [ 
-    /*         Column::computed('action') 
-                  ->exportable(false) 
-                  ->printable(false) 
-                  ->width(60) 
-                  ->addClass('text-center'), */ 
             Column::make('kategori_id'), 
             Column::make('kategori_kode'), 
             Column::make('kategori_nama'), 
             Column::make('created_at'), 
-            Column::make('updated_at'), 
+            Column::make('updated_at'),
+            Column::computed('action') 
+                ->exportable(false) 
+                ->printable(false) 
+                ->width(100) 
+                ->addClass('text-center'),
         ]; 
     } 
- 
+
     /** 
      * Get the filename for export. 
      */ 
