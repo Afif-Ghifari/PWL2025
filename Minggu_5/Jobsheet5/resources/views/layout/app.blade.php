@@ -46,14 +46,10 @@
  
 {{-- Add common Javascript/Jquery code --}} 
  
-@push('js') 
-<script> 
- 
-    $(document).ready(function() { 
-        <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
-    }); 
- 
-</script> 
+@push('js')  
+
+<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+
 @endpush 
 
 @stack('scripts') 

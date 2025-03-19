@@ -10,6 +10,7 @@
         <div class="card">
             <div class="card-header">Manage Kategori</div>
             <div class="card-body">
+                <x-adminlte-button label="Tambah" theme="success" icon="fas fa-plus"/>
                 {!! $dataTable->table() !!}
             </div>
         </div>
