@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.template')
 
-        <title>PWL 2025</title>
-
-    </head>
-    <body>
-        <h2>Pemrograman Web Lanjut 2025</h2>
-        <h3>Semangat belajar laravel 10</h3>
-    </body>
-</html>
+@section('content')
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Halo, apakabar!!</h3>
+            <div class="card-tools"></div>
+        </div>
+        <div class="card-body">
+            Selamat atang semua, ini adalah halaman utama dari aplikasi ini.
+        </div>
+    </div>
+@endsection
