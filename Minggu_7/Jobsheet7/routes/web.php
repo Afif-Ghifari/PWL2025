@@ -37,6 +37,28 @@ Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::middleware('auth')->group(function () {   
     Route::get('/', [WelcomeController::class, 'index']);
+
+    // Semua yang di dalam hanya bisa diakses oleh role ADM
+    Route::middleware('authorize:ADM')->group(function () {    
+        Route::group(['prefix'=> 'level'], function(){
+            Route::get('/', [LevelController::class, 'index']);
+            Route::get('/list', [LevelController::class, 'list']);
+            Route::get('/create', [LevelController::class, 'create']);
+            Route::post('/', [LevelController::class, 'store']);
+            //----------JS6-----------//
+            Route::get('/create_ajax', [LevelController::class, 'create_ajax']);
+            Route::post('/ajax', [LevelController::class, 'store_ajax']);
+            Route::get('/{id}/edit_ajax', [LevelController::class, 'edit_ajax']);
+            Route::put('/{id}/update_ajax', [LevelController::class, 'update_ajax']);
+            Route::get('/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']);
+            Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']);
+            //----------JS6-----------//
+            Route::get('/{id}', [LevelController::class, 'show']);
+            Route::get('/{id}/edit', [LevelController::class, 'edit']);
+            Route::put('/{id}', [LevelController::class, 'update']);
+            Route::delete('/{id}', [LevelController::class, 'destroy']);
+        });
+    });
 });
 //----------JS7-----------//
 
@@ -104,24 +126,7 @@ Route::group(['prefix'=> 'user'], function(){
     Route::delete('/{id}', [UserController::class, 'destroy']);
 });
 
-Route::group(['prefix'=> 'level'], function(){
-    Route::get('/', [LevelController::class, 'index']);
-    Route::get('/list', [LevelController::class, 'list']);
-    Route::get('/create', [LevelController::class, 'create']);
-    Route::post('/', [LevelController::class, 'store']);
-    //----------JS6-----------//
-    Route::get('/create_ajax', [LevelController::class, 'create_ajax']);
-    Route::post('/ajax', [LevelController::class, 'store_ajax']);
-    Route::get('/{id}/edit_ajax', [LevelController::class, 'edit_ajax']);
-    Route::put('/{id}/update_ajax', [LevelController::class, 'update_ajax']);
-    Route::get('/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']);
-    Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']);
-    //----------JS6-----------//
-    Route::get('/{id}', [LevelController::class, 'show']);
-    Route::get('/{id}/edit', [LevelController::class, 'edit']);
-    Route::put('/{id}', [LevelController::class, 'update']);
-    Route::delete('/{id}', [LevelController::class, 'destroy']);
-});
+
 
 Route::group(['prefix'=> 'kategori'], function(){
     Route::get('/', [KategoriController::class, 'index']);
