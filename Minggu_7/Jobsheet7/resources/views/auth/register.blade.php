@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login Pengguna</title>
+    <title>Register Pengguna</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -25,9 +25,11 @@
         <div class="card card-outline card-primary">
             <div class="card-header text-center"><a href="{{ url('/') }}" class="h1"><b>Admin</b>LTE</a></div>
             <div class="card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
-                <form action="{{ url('login') }}" method="POST" id="form-login">
+                <p class="login-box-msg">Register to make new account</p>
+                <form action="{{ url('register') }}" method="POST" id="form-register">
                     @csrf
+                    <input type="hidden" id="level_id" name="level_id" class="form-control" value="3">
+
                     <div class="input-group mb-3">
                         <input type="text" id="username" name="username" class="form-control"
                             placeholder="Username">
@@ -37,6 +39,15 @@
                             </div>
                         </div>
                         <small id="error-username" class="error-text text-danger"></small>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                        <small id="error-nama" class="error-text text-danger"></small>
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" id="password" name="password" class="form-control"
@@ -49,7 +60,7 @@
                         <small id="error-password" class="error-text text-danger"></small>
                     </div>
                     <div class="row gap-2">
-                        <!-- /.col 
+                        <!-- /.col
                         <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="remember"><label for="remember">Remember Me</label>
@@ -59,10 +70,10 @@
                             <button type="submit" class="btn btn-success btn-block">Sign In</button>
                         </div>
                         /.col -->
-                        <button type="submit" class="btn btn-success btn-block">Sign In</button>
+                        <button type="submit" class="btn btn-success btn-block">Register</button>
                         <div class="w-100 my-2">
-                            <p class="m-0">Belum mempunyai akun?</p>
-                            <a href="{{ url('register') }}" class="btn btn-link text-left">Register</a>
+                            <p class="m-0">Sudah mempunyai akun?</p>
+                            <a href="{{ url('login') }}" class="btn btn-link text-left">Log In</a>
                         </div>
                     </div>
                 </form>
@@ -93,9 +104,14 @@
         });
 
         $(document).ready(function() {
-            $("#form-login").validate({
+            $("#form-register").validate({
                 rules: {
                     username: {
+                        required: true,
+                        minlength: 4,
+                        maxlength: 20
+                    },
+                    nama: {
                         required: true,
                         minlength: 4,
                         maxlength: 20
@@ -118,7 +134,7 @@
                                     title: 'Berhasil',
                                     text: response.message,
                                 }).then(function() {
-                                    window.location = response.redirect;
+                                    window.location = '/';
                                 });
                             } else { // jika error
                                 $('.error-text').text('');

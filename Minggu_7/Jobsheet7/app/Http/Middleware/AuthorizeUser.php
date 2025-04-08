@@ -13,12 +13,12 @@ class AuthorizeUser
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role = ''): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-        $user = $request->user();  // ambil data user yg login
-                                   // fungsi user() diambil dari UserModel.php
-        if($user->hasRole($role)){ // cek apakah user punya role yg diinginkan
-            return $next($request);
+        $user_role = $request->user()->getRole();  // ambil data level_kode user yg login
+        
+        if (in_array($user_role, $roles)) { // cek apakah level_kode user ada di dalam array
+            return $next($request); // jika ada maka lanjutkan request
         }
 
         // jika tidak punya role, maka tampilkan error 403
