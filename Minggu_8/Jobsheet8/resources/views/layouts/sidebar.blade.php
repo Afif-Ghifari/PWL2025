@@ -14,6 +14,16 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
+                <a href="{{ url('/profile/' . $authUser->user_id . '/show') }}"
+                    class="nav-link {{ $activeMenu == 'profile' ? 'active' : '' }}">
+                    <img src="{{ $authUser->profile_pic
+                        ? asset('img/profile_pic/' . $authUser->profile_pic)
+                        : asset('img/profile_pic/default-pp.jpg') }}"
+                        class="img-fluid rounded nav-icon " style="width: 25px" alt="">
+                    <p>Profil Pengguna</p>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ url('/') }}" class="nav-link  {{ $activeMenu == 'dashboard' ? 'active' : '' }} ">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>Dashboard</p>
@@ -82,4 +92,3 @@
         </ul>
     </nav>
 </div>
-

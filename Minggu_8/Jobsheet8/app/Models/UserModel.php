@@ -20,6 +20,7 @@ class UserModel extends Authenticatable
         'username',
         'nama',
         'password',
+        'profile_pic', // menambahkan field baru
         'created_at',
         'updated_at'
     ];

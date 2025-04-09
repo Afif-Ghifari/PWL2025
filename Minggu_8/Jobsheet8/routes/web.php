@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -174,6 +175,13 @@ Route::middleware('auth')->group(function () {
 
         });
     });
+   
+    // Route untuk profil
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/{id}/show', [ProfileController::class, 'show']);
+        Route::put('/{id}', [ProfileController::class, 'update']);
+    });
+
 });
 //----------JS7-----------//
 
