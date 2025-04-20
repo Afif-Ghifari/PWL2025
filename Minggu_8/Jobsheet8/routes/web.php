@@ -14,6 +14,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StokController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +53,7 @@ Route::middleware('auth')->group(function () {
             //----------JS6-----------//
             Route::get('/create_ajax', [LevelController::class, 'create_ajax']);
             Route::post('/ajax', [LevelController::class, 'store_ajax']);
+            Route::get('/{id}/show_ajax', [LevelController::class, 'show_ajax']);
             Route::get('/{id}/edit_ajax', [LevelController::class, 'edit_ajax']);
             Route::put('/{id}/update_ajax', [LevelController::class, 'update_ajax']);
             Route::get('/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']);
@@ -77,6 +79,7 @@ Route::middleware('auth')->group(function () {
             //----------JS6-----------//
             Route::get('/create_ajax', [UserController::class, 'create_ajax']);
             Route::post('/ajax', [UserController::class, 'store_ajax']);
+            Route::get('/{id}/show_ajax', [UserController::class, 'show_ajax']);
             Route::get('/{id}/edit_ajax', [UserController::class, 'edit_ajax']);
             Route::put('/{id}/update_ajax', [UserController::class, 'update_ajax']);
             Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']);
@@ -105,6 +108,7 @@ Route::middleware('auth')->group(function () {
             //----------JS6-----------//
             Route::get('/create_ajax', [KategoriController::class, 'create_ajax']);
             Route::post('/ajax', [KategoriController::class, 'store_ajax']);
+            Route::get('/{id}/show_ajax', [KategoriController::class, 'show_ajax']);
             Route::get('/{id}/edit_ajax', [KategoriController::class, 'edit_ajax']);
             Route::put('/{id}/update_ajax', [KategoriController::class, 'update_ajax']);
             Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']);
@@ -130,6 +134,7 @@ Route::middleware('auth')->group(function () {
             //----------JS6-----------//
             Route::get('/create_ajax', [SupplierController::class, 'create_ajax']);
             Route::post('/ajax', [SupplierController::class, 'store_ajax']);
+            Route::get('/{id}/show_ajax', [SupplierController::class, 'show_ajax']);
             Route::get('/{id}/edit_ajax', [SupplierController::class, 'edit_ajax']);
             Route::put('/{id}/update_ajax', [SupplierController::class, 'update_ajax']);
             Route::get('/{id}/delete_ajax', [SupplierController::class, 'confirm_ajax']);
@@ -157,6 +162,7 @@ Route::middleware('auth')->group(function () {
             //----------JS6-----------//
             Route::get('/create_ajax', [BarangController::class, 'create_ajax']);
             Route::post('/ajax', [BarangController::class, 'store_ajax']);
+            Route::get('/{id}/show_ajax', [BarangController::class, 'show_ajax']);
             Route::get('/{id}/edit_ajax', [BarangController::class, 'edit_ajax']);
             Route::put('/{id}/update_ajax', [BarangController::class, 'update_ajax']);
             Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']);
@@ -174,6 +180,16 @@ Route::middleware('auth')->group(function () {
             //----------JS8-----------//
 
         });
+
+        Route::group(['prefix' => 'stok'], function () {
+            Route::get('/', [StokController::class, 'index']);
+            Route::post('/list', [StokController::class, 'list']);
+            Route::get('/create', [StokController::class, 'create']);
+            Route::post('/', [StokController::class, 'store']);
+            Route::get('/{id}/edit', [StokController::class, 'edit']);
+            Route::put('/{id}', [StokController::class, 'update']);
+            Route::delete('/{id}', [StokController::class, 'destroy']);
+        });   
     });
    
     // Route untuk profil
